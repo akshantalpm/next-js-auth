@@ -42,6 +42,8 @@ callbacks.jwt = async (token, user, account, profile) => {
     console.log("JWT API callback triggered")
     const appToken = {"appTokenKey": "abcd"}
     if (token) {
+        user.appTokenKey = appToken
+        console.log("JWT API callback triggered")
         return Promise.resolve({...token, ...user, ...account, ...profile, appToken});
     }
 }
@@ -50,7 +52,7 @@ callbacks.session = async (session, user, sessionToken) => {
     console.log(user)
     const appToken = {"appToken": "pqr"}
     session.appToken = appToken
-    return Promise.resolve({...session, ...user, ...sessionToken, appToken})
+    return Promise.resolve({...session, ...user, ...sessionToken, ...appToken})
 }
 
 
