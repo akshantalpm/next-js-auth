@@ -40,7 +40,7 @@ callbacks.signIn = async function signIn(user, account, metadata) {
 
 callbacks.jwt = async (token, user, account, profile) => {
     console.log("JWT API callback triggered")
-    const appToken = {"appTokenKey": "abcd"}
+    const appToken = "abcd"
     if (user) {
             user.appTokenKey = appToken
     }
