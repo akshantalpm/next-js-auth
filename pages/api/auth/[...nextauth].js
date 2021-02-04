@@ -38,19 +38,19 @@ callbacks.signIn = async function signIn(user, account, metadata) {
  * @return {object}              Session that will be returned to the client
  */
 
-
-
 callbacks.jwt = async (token, user, account, profile) => {
-  const appToken = {"appTokenKey": "abcd"}
-  if (token) {
-    return Promise.resolve({ ...token, ...user, ...account, ...profile,  appToken});
-  }
+    console.log("JWT API callback triggered")
+    const appToken = {"appTokenKey": "abcd"}
+    if (token) {
+        return Promise.resolve({...token, ...user, ...account, ...profile, appToken});
+    }
 }
 
 callbacks.session = async (session, user, sessionToken) => {
-  console.log(user)
-  const appToken = {"appToken": "pqr"}
-  return Promise.resolve({ ...session, ...user, ...sessionToken, appToken})
+    console.log(user)
+    const appToken = {"appToken": "pqr"}
+    session.appToken = appToken
+    return Promise.resolve({...session, ...user, ...sessionToken, appToken})
 }
 
 
@@ -64,7 +64,6 @@ const options = {
   },
   callbacks
 }
-
 
 
 export default (req, res) => NextAuth(req, res, options)

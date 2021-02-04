@@ -25,7 +25,7 @@ export default function Home() {
       <h1>Home</h1>
       <>
         {session?.user ?
-          <a href="#" onClick={handleLogout} >Logout</a> :
+          <a href="#" onClick={handleLogout} >Logout {session} </a> :
           <a href="#" onClick={handleLogin} >Login</a>
         }
       </>
