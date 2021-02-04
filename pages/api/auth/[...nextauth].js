@@ -54,7 +54,7 @@ callbacks.jwt = async (token, user, account, profile) => {
 
 callbacks.session = async (session, user, sessionToken) => {
     console.log(user)
-    return Promise.resolve({...session, ...user, ...sessionToken, ...appToken})
+    return Promise.resolve({...session, ...user, ...sessionToken})
 }
 
 
