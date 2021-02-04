@@ -19,21 +19,6 @@ const providers = [
 
 const callbacks = {}
 
-callbacks.signIn = async function signIn(user, account, metadata) {
-  console.log(user)
-  console.log(account)
-  console.log(metadata)
-    if (user) {
-        user.accessToken = "eyJraWQiOiI4NkQ4OEtmIiwiYWxnIjoiUlMyNTYifQ.eyJpc3MiOiJodHRwczovL2FwcGxlaWQuYXBwbGUuY29tIiwiYXVkIjoiY29tLmRlc2VydmUuZGVzZXJ2ZUNhcmRTdGFnZVdlYiIsImV4cCI6MTYxMjUyNzA1MywiaWF0IjoxNjEyNDQwNjUzLCJzdWIiOiIwMDE4MTQuMDJkMzUxZjE4Njk0NDM1ZDhjMzA4MTNkZDEyMTVkZDQuMDkzNSIsImF0X2hhc2giOiJJV3duZ0NGTWlnLTFMeUxVYlhaWVhnIiwiZW1haWwiOiJwb29qYS5ib25naXJ3YXJAZGVzZXJ2ZS5jb20iLCJlbWFpbF92ZXJpZmllZCI6InRydWUiLCJhdXRoX3RpbWUiOjE2MTI0NDA2NTIsIm5vbmNlX3N1cHBvcnRlZCI6dHJ1ZX0.Dj_4gU8F41sW3ti0ohFHPknNOCrIbq7BNmGvGGUUdC7W9wmbvTEaW_l9gLrNlqK23QtPlBC_xqhOvRQTmtMdtESOWdVvS-HbGySwsojwwugCb-01Q6Fh3AXDMYShnv0F9OJygs3R8gzVF14DWnL9fBFCiz_b2scEGS_jGgWXfw0mQjq96BFmlILQFs4j2kCo284qypaQBwyY2Y7ODMJ5zOv-Xsh2-I_puYx0O_XZzA0BebRVP8JSeiSHRjPO9CIcLtwg9sPsex-5warRSTIGKJOSqzXTwZBZfma0GWUjsCYlZXyd_n8QIBOKKWD53p5kGdaACbbHJJ2XFjW-4Ya8gw"
-    }
-
-    if (account.provider === 'apple') {
-        return true
-    }
-
-    return false;
-}
-
 /**
  * @param  {object} session      Session object
  * @param  {object} user         User object    (if using database sessions)
@@ -43,9 +28,8 @@ callbacks.signIn = async function signIn(user, account, metadata) {
 
 callbacks.jwt = async (token, user, account, profile) => {
     console.log("JWT API callback triggered")
-    if (user) {
-        token = { accessToken: user.accessToken }
-    }
+    console.log(token)
+    // user.accessToken = "eyJraWQiOiI4NkQ4OEtmIiwiYWxnIjoiUlMyNTYifQ.eyJpc3MiOiJodHRwczovL2FwcGxlaWQuYXBwbGUuY29tIiwiYXVkIjoiY29tLmRlc2VydmUuZGVzZXJ2ZUNhcmRTdGFnZVdlYiIsImV4cCI6MTYxMjUyNzA1MywiaWF0IjoxNjEyNDQwNjUzLCJzdWIiOiIwMDE4MTQuMDJkMzUxZjE4Njk0NDM1ZDhjMzA4MTNkZDEyMTVkZDQuMDkzNSIsImF0X2hhc2giOiJJV3duZ0NGTWlnLTFMeUxVYlhaWVhnIiwiZW1haWwiOiJwb29qYS5ib25naXJ3YXJAZGVzZXJ2ZS5jb20iLCJlbWFpbF92ZXJpZmllZCI6InRydWUiLCJhdXRoX3RpbWUiOjE2MTI0NDA2NTIsIm5vbmNlX3N1cHBvcnRlZCI6dHJ1ZX0.Dj_4gU8F41sW3ti0ohFHPknNOCrIbq7BNmGvGGUUdC7W9wmbvTEaW_l9gLrNlqK23QtPlBC_xqhOvRQTmtMdtESOWdVvS-HbGySwsojwwugCb-01Q6Fh3AXDMYShnv0F9OJygs3R8gzVF14DWnL9fBFCiz_b2scEGS_jGgWXfw0mQjq96BFmlILQFs4j2kCo284qypaQBwyY2Y7ODMJ5zOv-Xsh2-I_puYx0O_XZzA0BebRVP8JSeiSHRjPO9CIcLtwg9sPsex-5warRSTIGKJOSqzXTwZBZfma0GWUjsCYlZXyd_n8QIBOKKWD53p5kGdaACbbHJJ2XFjW-4Ya8gw"
     if (token) {
         console.log("JWT API callback triggered")
         return Promise.resolve({...token, ...user, ...account, ...profile});
