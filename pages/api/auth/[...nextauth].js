@@ -29,14 +29,16 @@ const callbacks = {}
 
 
 callbacks.jwt = async (token, user, account, profile) => {
+  const appToken = {"appToken": "abcd"}
   if (token) {
-    return Promise.resolve({ ...token, ...user, ...account, ...profile });
+    return Promise.resolve({ ...token, ...user, ...account, ...profile,  appToken});
   }
 }
 
 callbacks.session = async (session, user, sessionToken) => {
   console.log(user)
-  return Promise.resolve({ ...session, ...user, ...sessionToken })
+  const appToken = {"appToken": "pqr"}
+  return Promise.resolve({ ...session, ...user, ...sessionToken, appToken})
 }
 
 
