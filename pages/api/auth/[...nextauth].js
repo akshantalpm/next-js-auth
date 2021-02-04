@@ -30,6 +30,9 @@ const callbacks = {}
 
 callbacks.jwt = async (token, user, account, profile) => {
   if (token) {
+    if(user) {
+      user.data = "abcd"
+    }
     return Promise.resolve({ ...token, ...user, ...account, ...profile });
   }
 }
