@@ -19,6 +19,18 @@ const providers = [
 
 const callbacks = {}
 
+callbacks.signIn = async function signIn(user, account, metadata) {
+  console.log(user)
+  console.log(account)
+  console.log(metadata)
+    if (account.provider === 'apple') {
+        user.accessToken = {"applicationAccessToken": "pqr"}
+        return true
+    }
+
+    return false;
+}
+
 /**
  * @param  {object} session      Session object
  * @param  {object} user         User object    (if using database sessions)
