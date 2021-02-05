@@ -3,6 +3,7 @@ import { Provider } from 'next-auth/client'
 function MyApp({ Component, pageProps }) {
   return (
     <Provider>
+      {console.log(pageProps)}
       <Component {...pageProps} />
     </Provider>
   );
