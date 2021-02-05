@@ -1,4 +1,5 @@
 const AppleAuth = require('apple-auth');
+import { serialize } from 'cookie';
 
 export default async function handler(req, res) {
     const config = {
@@ -18,8 +19,7 @@ export default async function handler(req, res) {
             const user = {};
             user.idToken = response.id_token;
             user.accessToken = response.access_token;
-            document.cookie = 'authtoken='+response.id_token
-            window.location = "/dashboard";
+            res.setHeader('Set-Cookie', serialize('token', response.id_token, { path: '/' }));
             res.status(200).json(user);
         } catch (ex) {
             console.error(ex);
